@@ -1,0 +1,147 @@
+export interface FormulaPreset {
+  category: 'Arithmetic & Precedence' | 'Statistical Functions' | 'Logical & Conditions' | 'Compiler Optimization' | 'Diagnostics & Cycles';
+  title: string;
+  formula: string;
+  description: string;
+  targetCellRecommendation?: string;
+  expectedResult?: string;
+}
+
+export const EXAMPLE_FORMULAS: FormulaPreset[] = [
+  {
+    category: 'Arithmetic & Precedence',
+    title: 'Basic Addition',
+    formula: '=B2+C2',
+    description: 'Direct binary addition referencing cells B2 and C2.',
+    targetCellRecommendation: 'D2',
+    expectedResult: 'Sum of cells B2 and C2',
+  },
+  {
+    category: 'Arithmetic & Precedence',
+    title: 'Multiplication Precedence',
+    formula: '=B2+C2*2',
+    description: 'Demonstrates operator precedence: C2*2 is evaluated before addition with B2.',
+    targetCellRecommendation: 'D2',
+    expectedResult: 'B2 + (C2 * 2)',
+  },
+  {
+    category: 'Arithmetic & Precedence',
+    title: 'Parentheses Override',
+    formula: '=(B2+C2)*2',
+    description: 'Parentheses force addition of B2 and C2 before multiplying the result by 2.',
+    targetCellRecommendation: 'D2',
+    expectedResult: '(B2 + C2) * 2',
+  },
+  {
+    category: 'Statistical Functions',
+    title: 'Sum of Cell Range',
+    formula: '=SUM(B2:B5)',
+    description: 'Expands range B2:B5 and accumulates all values via the SUM standard function.',
+    targetCellRecommendation: 'B6',
+    expectedResult: 'Total sum of marks in B2:B5',
+  },
+  {
+    category: 'Statistical Functions',
+    title: 'Arithmetic Mean (Average)',
+    formula: '=AVG(B2:B5)',
+    description: 'Computes sum of values in range divided by the element count.',
+    targetCellRecommendation: 'B7',
+    expectedResult: 'Average of marks in B2:B5',
+  },
+  {
+    category: 'Statistical Functions',
+    title: 'Range Max & Min Bounds',
+    formula: '=MAX(D2:D5)',
+    description: 'Scans range D2:D5 to compute highest scoring value.',
+    targetCellRecommendation: 'B8',
+    expectedResult: 'Highest final score',
+  },
+  {
+    category: 'Statistical Functions',
+    title: 'Numeric Cell Count',
+    formula: '=COUNT(B2:B5)',
+    description: 'Counts the number of cells in the range that contain valid numbers.',
+    targetCellRecommendation: 'B9',
+    expectedResult: '4',
+  },
+  {
+    category: 'Logical & Conditions',
+    title: 'Simple IF Conditional',
+    formula: '=IF(B2>50, B2*2, C2)',
+    description: 'Conditional branch: evaluates test condition B2>50, choosing true or false expression.',
+    targetCellRecommendation: 'D2',
+    expectedResult: '160 if B2 is 80',
+  },
+  {
+    category: 'Logical & Conditions',
+    title: 'Compound Logical AND',
+    formula: '=IF(AND(B2>50, C2>5), B2+C2, 0)',
+    description: 'Verifies both conditions (B2>50 AND C2>5) are met before granting total marks.',
+    targetCellRecommendation: 'D2',
+    expectedResult: 'Sum if both pass, else 0',
+  },
+  {
+    category: 'Logical & Conditions',
+    title: 'Nested Grade Classifier',
+    formula: '=IF(D2>=75, "Distinction", IF(D2>=50, "Pass", "Remedial"))',
+    description: 'Multi-tier nested IF evaluation tree producing categorical status text.',
+    targetCellRecommendation: 'E2',
+    expectedResult: '"Distinction" or "Pass"',
+  },
+  {
+    category: 'Compiler Optimization',
+    title: 'Constant Folding',
+    formula: '=10*5+A2',
+    description: 'The compiler statically folds the binary literal expression 10*5 into 50 at compile time.',
+    targetCellRecommendation: 'C2',
+    expectedResult: '50 + A2 (without runtime 10*5)',
+  },
+  {
+    category: 'Compiler Optimization',
+    title: 'Additive Zero Identity',
+    formula: '=A2+0',
+    description: 'Algebraic simplification removes the addition of 0, emitting directly reference A2.',
+    targetCellRecommendation: 'C2',
+    expectedResult: 'A2 directly',
+  },
+  {
+    category: 'Compiler Optimization',
+    title: 'Multiplicative Identity & Annihilation',
+    formula: '=B2*1+0',
+    description: 'Simultaneously eliminates *1 and +0 identities via multi-pass optimization.',
+    targetCellRecommendation: 'D2',
+    expectedResult: 'B2 directly',
+  },
+  {
+    category: 'Compiler Optimization',
+    title: 'Zero Multiplication Annihilation',
+    formula: '=A2*0',
+    description: 'Any quantity multiplied by 0 reduces directly to literal 0.',
+    targetCellRecommendation: 'C3',
+    expectedResult: '0',
+  },
+  {
+    category: 'Compiler Optimization',
+    title: 'Dead Branch Elimination',
+    formula: '=IF(TRUE, B2*2, C2)',
+    description: 'Compiler evaluates constant condition TRUE and strips the unreached C2 branch.',
+    targetCellRecommendation: 'D2',
+    expectedResult: 'B2*2',
+  },
+  {
+    category: 'Diagnostics & Cycles',
+    title: 'Self-Reference (Immediate Warning)',
+    formula: '=D2+10',
+    description: 'Entering =D2+10 inside D2 triggers an immediate semantic error detecting self-reference.',
+    targetCellRecommendation: 'D2',
+    expectedResult: 'Semantic Error Flagged',
+  },
+  {
+    category: 'Diagnostics & Cycles',
+    title: 'Multi-Cell Cycle Demo',
+    formula: '=B1+5',
+    description: 'If entered into A1 while B1 has =A1+10, circular cycle detector flags A1 -> B1 -> A1.',
+    targetCellRecommendation: 'A1',
+    expectedResult: 'Circular Dependency Detected',
+  },
+];

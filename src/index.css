@@ -1,0 +1,73 @@
+@import '@xyflow/react/dist/style.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0B1020;
+  color: #F8FAFC;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+  user-select: none;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0B1020;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #273449;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #374763;
+}
+
+/* React Flow custom dark styling */
+.react-flow__renderer {
+  background-color: #0B1020 !important;
+}
+
+.react-flow__controls {
+  background-color: #151D32 !important;
+  border: 1px solid #273449 !important;
+  border-radius: 8px !important;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+}
+
+.react-flow__controls-button {
+  background-color: #151D32 !important;
+  border-bottom: 1px solid #273449 !important;
+  fill: #94A3B8 !important;
+  color: #94A3B8 !important;
+}
+
+.react-flow__controls-button:hover {
+  background-color: #1C263D !important;
+  fill: #F8FAFC !important;
+}
+
+.react-flow__attribution {
+  display: none !important;
+}
+
+/* Selection and cell styles */
+::selection {
+  background: rgba(99, 102, 241, 0.35);
+  color: #F8FAFC;
+}
